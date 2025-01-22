@@ -124,7 +124,7 @@ const SideCart = ({ isOpen, toggleCart }: any) => {
 
         {/* Bottom Buttons */}
         <div className="sticky bottom-0 bg-white text-sm flex flex-col sm:flex-row gap-4 border-t border-t-[#D9D9D9] py-4">
-          {["Cart", "Checkout", "Comparison"].map((label, index) => (
+          {["Cart", "Checkout", "Comparsion"].map((label, index) => (
             <Link href={`/${label}`} key={index} className="w-full sm:w-1/3">
               <button
                 onClick={handleLinkClick}
