@@ -1,0 +1,10 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
+TC001,Verify product listing page,"Open product page > Verify product display","Products should be displayed correctly","Products displayed as expected","Passed",Low,-,"No issues encountered"
+TC002,Test API error handling,"Disconnect API > Refresh page","Fallback UI with error message should appear","Error message displayed as expected","Passed",Medium,-,"Handled gracefully"
+TC003,Validate cart functionality,"Add product to cart > Verify cart content","Cart should update with the newly added product","Cart updated correctly as expected","Passed",High,-,"Functionality working as intended"
+TC004,Test mobile responsiveness,"Resize browser window > Check layout","Layout should adjust to fit different screen sizes","Layout adjusted correctly and remained responsive","Passed",Medium,-,"Test completed successfully"
+TC005,Test search bar functionality,"Enter a search query > Verify search results","Search results should match the query","Search results matched query","Passed",Medium,-,"Search working as expected"
+TC006,Test add to cart functionality,"Add product to cart > Verify cart content","Cart should update with the newly added product","Cart updated with correct product","Passed",High,-,"Add to cart working as expected"
+TC007,Test add to wishlist functionality,"Add product to wishlist > Verify wishlist content","Wishlist should update with the added product","Wishlist updated with correct product","Passed",Medium,-,"Add to wishlist working as expected"
+TC008,Test review product functionality,"Select product > Click on review section > Submit a review","Review should be submitted successfully and displayed on the product page","Review submitted successfully and displayed as expected","Passed",Medium,-,"Review functionality working as expected"
+TC009,Test related product functionality,"Open product page > Verify related products section","Related products should be displayed correctly and match product category","Related products displayed as expected","Passed",Medium,-,"Related product functionality working as expected"
