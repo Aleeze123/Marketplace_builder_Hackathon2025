@@ -1,7 +1,7 @@
 __HACKATHON 03__
 __Marketplace Builder Hackathon 2025 __
 
-                     *FURNIRO*
+   *FURNIRO*
 
 *Day 01 Laying the foundation for furniro business Journey*
 
