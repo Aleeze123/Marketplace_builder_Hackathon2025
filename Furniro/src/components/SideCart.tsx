@@ -51,7 +51,9 @@ const SideCart = ({ isOpen, toggleCart }: any) => {
           </button>
         </div>
         <span className="h-[1px] w-9/12 block bg-[#D9D9D9] my-6" />
-        <div className="h-auto sm:h-[50vh] md:h-[60vh] overflow-y-auto flex flex-col gap-10">
+        
+        {/* Cart Items */}
+        <div className="h-[calc(100vh-300px)] overflow-y-auto flex flex-col gap-10">
           {!cartItems.length ? (
             <p className="text-xl text-center font-medium opacity-60">
               Your Cart is empty
@@ -62,17 +64,20 @@ const SideCart = ({ isOpen, toggleCart }: any) => {
                 key={item.product._id}
                 className="flex items-center justify-between border-b pb-10"
               >
-                <div className="flex items-center space-x-4">
-                  <Image
-                    src={item.product.productImage}
-                    alt={item.product.title}
-                    width={60}
-                    height={60}
-                    className="rounded-md"
-                  />
-                  <p className="text-sm font-medium">{item.product.title}</p>
-                </div>
-                <div className="flex items-center gap-4 border border-yellow-500 px-3 py-1 rounded-md">
+              <div className="flex items-center space-x-4">
+  <Image
+    src={item.product.productImage}
+    alt={item.product.title}
+    width={60}
+    height={60}
+    className="rounded-md"
+  />
+  <p className="text-sm font-medium truncate max-w-[120px] sm:max-w-[180px] md:max-w-[200px]">
+    {item.product.title}
+  </p>
+</div>
+
+                <div className="flex items-center gap-4 border px-3 py-1 rounded-md">
                   <Minus
                     className="cursor-pointer text-gray-500"
                     onClick={() => handleDecreaseQuantity(item.product._id)}
@@ -103,51 +108,32 @@ const SideCart = ({ isOpen, toggleCart }: any) => {
             ))
           )}
         </div>
+        
         {/* Subtotal */}
-        <div className="flex py-6 text-bold justify-between items-center">
-          <span>Subtotal</span>
-          <div className="text-center w-full text-ochre font-bold text-[#B88E2F]">
-            <span>
-              ${" "}
-              {cartItems.reduce(
-                (total, product) =>
-                  total + product.product.price * product.count,
-                0
-              ).toLocaleString()}
-            </span>
-          </div>
+        <div className="py-6 flex justify-between items-center">
+          <span className="font-bold">Subtotal</span>
+          <span className="font-bold text-[#B88E2F]">
+            ${" "}
+            {cartItems.reduce(
+              (total, product) =>
+                total + product.product.price * product.count,
+              0
+            ).toLocaleString()}
+          </span>
         </div>
-        <div className="text-sm flex flex-col sm:flex-row gap-4 border-t border-t-[#D9D9D9] py-10">
-          <div className="w-full sm:w-1/3">
-            <Link href="/Cart">
+
+        {/* Bottom Buttons */}
+        <div className="sticky bottom-0 bg-white text-sm flex flex-col sm:flex-row gap-4 border-t border-t-[#D9D9D9] py-4">
+          {["Cart", "Checkout", "Comparison"].map((label, index) => (
+            <Link href={`/${label}`} key={index} className="w-full sm:w-1/3">
               <button
                 onClick={handleLinkClick}
-                className="border-2 border-black w-full py-3 px-5 rounded-lg text-center text-black font-semibold hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full py-3 px-5 rounded-lg text-center text-black font-semibold bg-white border-2 border-black hover:bg-black hover:text-white transition-colors duration-300"
               >
-                Cart
+                {label}
               </button>
             </Link>
-          </div>
-          <div className="w-full sm:w-1/3">
-            <Link href="/Checkout">
-              <button
-                onClick={handleLinkClick}
-                className="border-2 border-black w-full py-3 px-5 rounded-lg text-center text-black font-semibold hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                Checkout
-              </button>
-            </Link>
-          </div>
-          <div className="w-full sm:w-1/3">
-            <Link href="/Comparsion">
-              <button
-                onClick={handleLinkClick}
-                className="border-2 border-black w-full py-3 px-5 rounded-lg text-center text-black font-semibold hover:bg-gray-100 hover:text-black focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                Comparison
-              </button>
-            </Link>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -155,3 +141,4 @@ const SideCart = ({ isOpen, toggleCart }: any) => {
 };
 
 export default SideCart;
+
