@@ -79,7 +79,7 @@ const Checkout = () => {
       <h2 className="text-black font-bold text-2xl mt-6">Billing Details</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
-        {/* Billing Form */}
+        {/*  Form */}
         <form className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
