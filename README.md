@@ -1,5 +1,5 @@
 __HACKATHON 03__
-__Marketplace Builder Hackathon 2025 __
+*Marketplace Builder Hackathon 2025*
 
 
 *FURNIRO is an eCommerce platform and a modern furniture marketplace that brings you a wide range of stylish and high-quality furniture. With a focus on the best UI, sleek design, and responsive functionality, it ensures a seamless shopping experience on both mobile and desktop devices. Whether you're looking to furnish your home or office, FURNIRO offers a variety of options to suit every need and style.*
