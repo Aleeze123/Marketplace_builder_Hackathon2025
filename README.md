@@ -16,4 +16,4 @@ __HACKATHON 03__
 
 *Day 06 Deployment Preparation and Staging*
 
-*Day 07 Live Deployment andP ost Launch Practices*
+*Day 07 Live Deployment and Post Launch Practices*
