@@ -8,12 +8,12 @@ __Marketplace Builder Hackathon 2025 __
 
 *Day 02 Marketplace Technical Foundation furniro*
 
-*Day03 API Integration Report furniro*
+*Day 03 API Integration Report furniro*
 
 *Day 04  Dynamic Frontend Components  Furniro*
 
-*Day05 Testing and Backend Refinement Furniro*
+*Day 05 Testing and Backend Refinement Furniro*
 
-*Day06 Deployment Preparation and Staging*
+*Day 06 Deployment Preparation and Staging*
 
-*Day 7 Live Deployment andP ost Launch Practices*
+*Day 07 Live Deployment andP ost Launch Practices*
