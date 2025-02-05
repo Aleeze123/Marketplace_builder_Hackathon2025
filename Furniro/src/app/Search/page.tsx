@@ -75,7 +75,7 @@ const Search = () => {
       {/* Loading  */}
       {loading ? (
         <div className="flex justify-center items-center h-screen">
-          <PulseLoader color="#000" />
+          <PulseLoader color="#B88E2F" />
         </div>
       ) : (
         <>
@@ -120,7 +120,7 @@ const Search = () => {
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 w-full max-w-screen-xl py-8 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 w-full max-w-screen-xl py-8 px-4">
             {filteredProducts.length === 0 ? (
               <div className="col-span-full text-center text-xl text-gray-500">
                 No products found for &quot;{query}&quot;
