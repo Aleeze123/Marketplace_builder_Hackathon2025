@@ -210,15 +210,24 @@ const Navbar = () => {
         </div>
         
         <div className="flex space-x-6 mt-4">
-        <SignInButton>
-        <Image onClick={closeMenu} src="/icon1.svg" alt="Profile Icon" width={34} height={38} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
-        </SignInButton>
-   
+          {/* If signed in, show the UserButton */}
+  <SignedIn>
+    <UserButton />
+  </SignedIn>
 
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
-
+  {/* If signed out, show the SignInButton */}
+  <SignedOut>
+    <SignInButton>
+      <Image
+        onClick={closeMenu}
+        src="/icon1.svg"
+        alt="Profile Icon"
+        width={34}
+        height={38}
+        className="cursor-pointer hover:opacity-80 transition-all duration-300"
+      />
+    </SignInButton>
+  </SignedOut>
           <Link href="/Search" passHref>
             <div className="relative">
               <Image onClick={closeMenu} src="/icon2.svg" alt="Search Icon" width={28} height={28} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
@@ -235,18 +244,46 @@ const Navbar = () => {
         </div>
         </Link>
           
-          <div onClick={toggleCart} className="relative cursor-pointer">
-          <Image src="/icon4.svg" alt="Cart Icon" width={30} height={28} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
-          {countAllItems() > 0 && (
-            <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
-              <p>{countAllItems()}</p>
-            </div>
-          )}
-        </div>
-        </div>
+        {/* If signed out, clicking Cart redirects to SignIn page */}
+  <SignedOut>
+    <SignInButton>
+      <div className="relative cursor-pointer">
+        <Image
+          src="/icon4.svg"
+          alt="Cart Icon"
+          width={30}
+          height={35}
+          className="cursor-pointer hover:opacity-80 transition-all duration-300"
+        />
+        {countAllItems() > 0 && (
+          <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
+            <p>{countAllItems()}</p>
+          </div>
+        )}
       </div>
-      {isCartOpen && <SideCart isOpen={isCartOpen} toggleCart={toggleCart} />}
+    </SignInButton>
+  </SignedOut>
+
+  {/* If signed in, show the cart icon and it will open the cart */}
+  <SignedIn>
+    <div onClick={toggleCart} className="relative cursor-pointer">
+      <Image
+        src="/icon4.svg"
+        alt="Cart Icon"
+        width={30}
+        height={35}
+        className="cursor-pointer hover:opacity-80 transition-all duration-300"
+      />
+      {countAllItems() > 0 && (
+        <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
+          <p>{countAllItems()}</p>
+        </div>
+      )}
     </div>
+  </SignedIn>
+    </div>
+
+    
   );
 };
 export default Navbar;
