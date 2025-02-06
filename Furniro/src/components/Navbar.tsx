@@ -35,11 +35,12 @@ const Navbar = () => {
           <h2 className="text-black text-[26px] font-extrabold hidden sm:block">Furniro</h2>
         </Link>
         <div className="flex items-center space-x-8">
-          {['Home', 'Shop', 'Blog', 'Contact'].map((link) => (
-            <Link href={`/${link}`} key={link} passHref>
-              <div className="text-[18px] text-black transition-all duration-300">{link}</div>
-            </Link>
-          ))}
+        {['Home', 'Shop', 'Blog', 'Contact'].map((link) => (
+  <Link href={link === 'Home' ? '/' : `/${link}`} key={link} passHref>
+    <div className="text-[18px] text-black transition-all duration-300">{link}</div>
+  </Link>
+))}
+
         </div>
         <div className="flex items-center space-x-6 relative">
           <SignedIn>
@@ -104,10 +105,14 @@ const Navbar = () => {
           </SignedIn>
         </div>
       </div>
+
+      {/* Mobile View */}
       <div className="md:hidden flex items-center justify-between w-full">
         <button onClick={toggleMenu} className="text-black focus:outline-none">
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+
+        {/* Logo in the Center */}
         <Link href="/" className="flex items-center justify-center flex-grow">
           <Image src="/Logo.png" alt="Logo" width={50} height={32} className="w-[50px] h-[32px] md:w-[60px] md:h-[40px] cursor-pointer" />
           <h2 className="text-black text-[22px] sm:text-[24px] md:text-[26px] font-extrabold ml-4 transition-all duration-300">Furniro</h2>
@@ -182,11 +187,12 @@ const Navbar = () => {
         </div>
 
         <div className="space-y-4">
-          {['Home', 'Shop', 'Blog', 'Contact'].map((link) => (
-            <Link href={`/${link}`} key={link} passHref>
-              <div onClick={closeMenu} className="text-[18px] text-black py-2 transition-all duration-300">{link}</div>
-            </Link>
-          ))}
+        {['Home', 'Shop', 'Blog', 'Contact'].map((link) => (
+  <Link href={link === 'Home' ? '/' : `/${link}`} key={link} passHref>
+    <div onClick={closeMenu} className="text-[18px] text-black py-2 transition-all duration-300">{link}</div>
+  </Link>
+))}
+
         </div>
       </div>
       {isCartOpen && <SideCart isOpen={isCartOpen} toggleCart={toggleCart} />}
