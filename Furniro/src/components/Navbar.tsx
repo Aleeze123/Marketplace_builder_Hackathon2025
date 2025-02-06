@@ -83,6 +83,24 @@ const Navbar = () => {
     </div>
   </Link>
 
+  <SignedOut>
+  <SignInButton>
+   
+      <div className="relative cursor-pointer">
+        <Image
+          onClick={closeMenu}
+          src="/icon3.svg"
+          alt="Heart Icon"
+          width={30}
+          height={28}
+          className="cursor-pointer hover:opacity-80 transition-all duration-300"
+        />
+      </div>
+
+  </SignInButton>
+</SignedOut>
+
+<SignedIn>
   <Link href="/Wishlist" passHref>
     <div className="relative cursor-pointer">
       <Image
@@ -90,7 +108,7 @@ const Navbar = () => {
         src="/icon3.svg"
         alt="Heart Icon"
         width={30}
-        height={35}
+        height={28}
         className="cursor-pointer hover:opacity-80 transition-all duration-300"
       />
       {countWishlistItems() > 0 && (
@@ -100,8 +118,117 @@ const Navbar = () => {
       )}
     </div>
   </Link>
+</SignedIn>
 
-  {/* If signed out, clicking Cart redirects to SignIn page */}
+ {/* If signed out, clicking Cart redirects to SignIn page */}
+ <SignedOut>
+    <SignInButton>
+      <div className="relative cursor-pointer">
+        <Image
+          src="/icon4.svg"
+          alt="Cart Icon"
+          width={30}
+          height={35}
+          className="cursor-pointer hover:opacity-80 transition-all duration-300"
+        />
+        {countAllItems() > 0 && (
+          <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
+            <p>{countAllItems()}</p>
+          </div>
+        )}
+      </div>
+    </SignInButton>
+  </SignedOut>
+
+  {/* If signed in, show the cart icon and it will open the cart */}
+  <SignedIn>
+    <div onClick={toggleCart} className="relative cursor-pointer">
+      <Image
+        src="/icon4.svg"
+        alt="Cart Icon"
+        width={30}
+        height={35}
+        className="cursor-pointer hover:opacity-80 transition-all duration-300"
+      />
+      {countAllItems() > 0 && (
+        <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
+          <p>{countAllItems()}</p>
+        </div>
+      )}
+    </div>
+  </SignedIn>
+
+</div>
+
+      
+      <div className="md:hidden flex items-center space-x-4">
+        <button onClick={toggleMenu} className="text-black focus:outline-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            className={`h-7 w-7 transition-transform duration-300 ${isMenuOpen ? 'rotate-45' : ''}`}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              className="transition-all duration-300"
+            />
+          </svg>
+        </button>
+  {/* If signed in, show the UserButton */}
+  <SignedIn>
+    <UserButton />
+  </SignedIn>
+
+  {/* If signed out, show the SignInButton */}
+  <SignedOut>
+    <SignInButton>
+      <Image
+        onClick={closeMenu}
+        src="/icon1.svg"
+        alt="Profile Icon"
+        width={24}
+        height={28}
+        className="cursor-pointer hover:opacity-80 transition-all duration-300"
+      />
+    </SignInButton>
+  </SignedOut>
+        <Link href="/Search" passHref>
+            <div className="relative">
+              <Image onClick={closeMenu} src="/icon2.svg" alt="Search Icon" width={28} height={28} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
+            </div>
+          </Link>
+
+
+<SignedIn>
+  <Link href="/Wishlist" passHref>
+    <div className="relative cursor-pointer">
+      <Image
+        onClick={closeMenu}
+        src="/icon3.svg"
+        alt="Heart Icon"
+        width={30}
+        height={28}
+        className="cursor-pointer hover:opacity-80 transition-all duration-300"
+      />
+      {countWishlistItems() > 0 && (
+        <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
+          <p>{countWishlistItems()}</p>
+        </div>
+      )}
+    </div>
+  </Link>
+</SignedIn>
+
+
+          
+        {/* If signed out, clicking Cart redirects to SignIn page */}
   <SignedOut>
     <SignInButton>
       <div className="relative cursor-pointer">
@@ -141,36 +268,6 @@ const Navbar = () => {
 </div>
 
       
-      <div className="md:hidden flex items-center space-x-4">
-        <button onClick={toggleMenu} className="text-black focus:outline-none">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            className={`h-7 w-7 transition-transform duration-300 ${isMenuOpen ? 'rotate-45' : ''}`}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              className="transition-all duration-300"
-            />
-          </svg>
-        </button>
-        <div onClick={toggleCart} className="relative cursor-pointer">
-          <Image src="/icon4.svg" alt="Cart Icon" width={30} height={35} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
-          {countAllItems() > 0 && (
-            <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
-              <p>{countAllItems()}</p>
-            </div>
-          )}
-        </div>
-      </div>
-      
       {/* Mobile Menu */}
       <div className={`md:hidden fixed inset-x-0 top-0 bg-white py-4 px-6 shadow-lg z-50 transition-transform duration-300 ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="flex justify-between items-center mb-4">
@@ -178,6 +275,7 @@ const Navbar = () => {
             <Image src="/Logo.png" alt="Logo" width={50} height={32} className="w-[50px] h-[32px] md:w-[60px] md:h-[40px] cursor-pointer" />
             <h2 className="text-black text-[22px] sm:text-[24px] md:text-[26px] font-bold font-serif ml-4">Furniro</h2>
           </Link>
+          
           <button onClick={toggleMenu} className="text-black focus:outline-none">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -209,81 +307,13 @@ const Navbar = () => {
           </Link>
         </div>
         
-        <div className="flex space-x-6 mt-4">
-          {/* If signed in, show the UserButton */}
-  <SignedIn>
-    <UserButton />
-  </SignedIn>
 
-  {/* If signed out, show the SignInButton */}
-  <SignedOut>
-    <SignInButton>
-      <Image
-        onClick={closeMenu}
-        src="/icon1.svg"
-        alt="Profile Icon"
-        width={34}
-        height={38}
-        className="cursor-pointer hover:opacity-80 transition-all duration-300"
-      />
-    </SignInButton>
-  </SignedOut>
-          <Link href="/Search" passHref>
-            <div className="relative">
-              <Image onClick={closeMenu} src="/icon2.svg" alt="Search Icon" width={28} height={28} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
-            </div>
-          </Link>
-          <Link href="/Wishlist" passHref>
-        <div className="relative cursor-pointer">
-          <Image onClick={closeMenu} src="/icon3.svg" alt="Heart Icon" width={30} height={28} className="cursor-pointer hover:opacity-80 transition-all duration-300" />
-          {countWishlistItems() > 0 && (
-            <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
-              <p>{countWishlistItems()}</p>
-            </div>
-          )}
-        </div>
-        </Link>
-          
-        {/* If signed out, clicking Cart redirects to SignIn page */}
-  <SignedOut>
-    <SignInButton>
-      <div className="relative cursor-pointer">
-        <Image
-          src="/icon4.svg"
-          alt="Cart Icon"
-          width={30}
-          height={35}
-          className="cursor-pointer hover:opacity-80 transition-all duration-300"
-        />
-        {countAllItems() > 0 && (
-          <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
-            <p>{countAllItems()}</p>
-          </div>
-        )}
-      </div>
-    </SignInButton>
-  </SignedOut>
 
-  {/* If signed in, show the cart icon and it will open the cart */}
-  <SignedIn>
-    <div onClick={toggleCart} className="relative cursor-pointer">
-      <Image
-        src="/icon4.svg"
-        alt="Cart Icon"
-        width={30}
-        height={35}
-        className="cursor-pointer hover:opacity-80 transition-all duration-300"
-      />
-      {countAllItems() > 0 && (
-        <div className="font-semibold absolute text-black bg-yellow-500 text-xs w-6 h-6 rounded-full flex items-center justify-center -top-2 -right-2 bg-opacity-90 animate-pulse">
-          <p>{countAllItems()}</p>
-        </div>
-      )}
-    </div>
-  </SignedIn>
-    </div>
-
-    
+   
+       </div>
+       </div>
   );
 };
 export default Navbar;
+
+
