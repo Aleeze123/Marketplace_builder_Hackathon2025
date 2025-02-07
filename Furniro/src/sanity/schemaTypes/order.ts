@@ -1,15 +1,31 @@
-interface Field {
+
+import { Rule } from '@sanity/types';
+
+interface BaseField {
     name: string;
     title: string;
     type: string;
-    validation?: (Rule: any) => any;
+    validation?: (Rule: Rule) => any;
     options?: {
-        list?: { title: string; value: string }[]; 
+        list?: { title: string; value: string }[];
         layout?: string;
         initialValue?: string;
     };
-    of?: { type: string; to: { type: string } }[];
 }
+
+interface ReferenceField extends BaseField {
+    to: { type: string }[];
+}
+
+interface ObjectField extends BaseField {
+    fields: Field[];
+}
+
+interface ArrayField extends BaseField {
+    of: (BaseField | ReferenceField | ObjectField)[];
+}
+
+type Field = BaseField | ReferenceField | ObjectField | ArrayField;
 
 interface Schema {
     name: string;
@@ -27,73 +43,73 @@ const order: Schema = {
             name: 'firstName',
             title: 'First Name',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'lastName',
             title: 'Last Name',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'companyName',
             title: 'Company Name',
             type: 'string',
-            validation: Rule => Rule.optional(),
+            validation: (Rule: Rule) => Rule.optional(),
         },
         {
             name: 'streetAddress',
             title: 'Street Address',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'country',
             title: 'Country',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'city',
             title: 'City',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'province',
             title: 'Province',
             type: 'string',
-            validation: Rule => Rule.optional(),
+            validation: (Rule: Rule) => Rule.optional(),
         },
         {
             name: 'zip',
             title: 'ZIP Code',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'phone',
             title: 'Phone Number',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
         },
         {
             name: 'email',
             title: 'Email Address',
             type: 'string',
-            validation: Rule => Rule.required().email(),
+            validation: (Rule: Rule) => Rule.required().email(),
         },
         {
             name: 'additionalInfo',
             title: 'Additional Information',
             type: 'text',
-            validation: Rule => Rule.optional(),
+            validation: (Rule: Rule) => Rule.optional(),
         },
         {
             name: 'paymentMethod',
             title: 'Payment Method',
             type: 'string',
-            validation: Rule => Rule.required(),
+            validation: (Rule: Rule) => Rule.required(),
             options: {
                 list: [
                     { title: 'Direct Bank Transfer', value: 'bank' },
@@ -106,7 +122,35 @@ const order: Schema = {
             name: 'cartItems',
             title: 'Cart Items',
             type: 'array',
-            of: [{ type: 'reference', to: { type: 'product' } }],
+            validation: (Rule: Rule) => Rule.required().min(1),
+            of: [
+                {
+                    type: 'object',
+                    name: 'cartItem',
+                    title: 'Cart Item',
+                    fields: [
+                        {
+                            name: 'product',
+                            title: 'Product',
+                            type: 'reference',
+                            to: [{ type: 'product' }],
+                            validation: (Rule: Rule) => Rule.required(),
+                        },
+                        {
+                            name: 'quantity',
+                            title: 'Quantity',
+                            type: 'number',
+                            validation: (Rule: Rule) => Rule.required().min(1),
+                        },
+                        {
+                            name: 'price',
+                            title: 'Price',
+                            type: 'number',
+                            validation: (Rule: Rule) => Rule.required().min(0),
+                        },
+                    ],
+                },
+            ],
         },
         {
             name: 'orderDate',
