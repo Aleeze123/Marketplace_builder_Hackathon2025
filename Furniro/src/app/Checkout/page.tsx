@@ -93,12 +93,18 @@ const Checkout = () => {
       additionalInfo: formData.additionalInfo || '',
       paymentMethod: selectedPayment,
       cartItems: cartItems.map(item => ({
-        _type: 'reference',
-        _ref: item.product._id, 
+        _type: 'cartItem',  // You can define a new document type for cartItem in Sanity
+        product: {
+          _type: 'reference',
+          _ref: item.product._id,  // Reference to the product in Sanity
+        },
+        price: item.product.price, 
+        quantity:item.count, // Keep count outside the reference object
       })),
       orderDate: new Date().toISOString(),
-      status: 'pending', 
+      status: 'pending',
     };
+    
 
     try {
       // Create order in Sanity
@@ -286,7 +292,8 @@ const Checkout = () => {
         <div className="p-6">
         <h3 className="text-xl font-bold text-gray-800">Product</h3>
 
-{cartItems.length === 0 ? (
+  
+        {cartItems.length === 0 ? (
   <p className="text-center text-gray-500 mt-4">Your cart is empty</p>
 ) : (
   cartItems.map((item) => (
@@ -407,4 +414,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
 
